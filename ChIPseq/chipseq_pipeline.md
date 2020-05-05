@@ -3,13 +3,13 @@
 ## 0. Prerequsite
 
 ### Softwares
-[Samtools](http://www.htslib.org/)
-[FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-[BWA](https://github.com/lh3/bwa)
-[Cutadapt](https://cutadapt.readthedocs.io/en/stable/)
-[PICARD](https://github.com/broadinstitute/picard)
-[bedtools](https://bedtools.readthedocs.io/en/latest/index.html)
-[SPP](https://cran.r-project.org/web/packages/spp/index.html)
+[Samtools](http://www.htslib.org/)\
+[FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)\
+[BWA](https://github.com/lh3/bwa)\
+[Cutadapt](https://cutadapt.readthedocs.io/en/stable/)\
+[PICARD](https://github.com/broadinstitute/picard)\
+[bedtools](https://bedtools.readthedocs.io/en/latest/index.html)\
+[SPP](https://cran.r-project.org/web/packages/spp/index.html)\
 [MACS2](https://github.com/taoliu/MACS)
 
 ## 1. Fastq
@@ -20,7 +20,7 @@ Check quality by running fastqc.
 ### 1-2. Trim adapter.
 `gzip -cd SAMPLE.fastq.gz | cutadapt -a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC - | gzip > SAMPLE.fastq.trimmed.gz`\
 SAMPLE.fastq.gz: Sequencing file.\
--a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC: Illumina adapter.\
+-a AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC: Illumina adapter.
 
 ## 2. Alignment
 
@@ -57,5 +57,5 @@ See https://github.com/kundajelab/phantompeakqualtools.
 
 ### 3-3. Run MACS2.
 `macs2 callpeak -g hs -t SAMPLE.BAM -c INPUT.BAM -n SAMPLE --keep-dup all --nomodel --extsize N --bdg`\
--g hs: if human, put hs, if mouse, put mm.
+-g hs: if human, put hs, if mouse, put mm.\
 --extsize N: determined by SPP
