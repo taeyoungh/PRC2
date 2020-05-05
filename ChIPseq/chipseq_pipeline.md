@@ -4,19 +4,12 @@
 
 ### Softwares
 [Samtools](http://www.htslib.org/)
-
 [FASTQC](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-
 [BWA](https://github.com/lh3/bwa)
-
 [Cutadapt](https://cutadapt.readthedocs.io/en/stable/)
-
 [PICARD](https://github.com/broadinstitute/picard)
-
 [bedtools](https://bedtools.readthedocs.io/en/latest/index.html)
-
 [SPP](https://cran.r-project.org/web/packages/spp/index.html)
-
 [MACS2](https://github.com/taoliu/MACS)
 
 ## 1. Fastq
@@ -45,7 +38,8 @@ INDEX_prefix: BWA genome index.\
 `samtools index SAMPLE.bam`
 
 ### 2-2. Filtering alignments
-Filter unmapped or secondary or failed or duplicated or low-aligned (Phred score<30) or noncanonical chromosomes-aligned reads.\
+Filter unmapped or secondary or failed or duplicated or low-aligned (Phred score<30) or noncanonical chromosomes-aligned reads.
+
 `samtools view -F 1804 -q 30 -b SAMPLE.bam chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY chrM > SAMPLE.filtered.bam`
 
 ### 2-3. Removing duplicates
@@ -57,7 +51,8 @@ Filter unmapped or secondary or failed or duplicated or low-aligned (Phred score
 `bedtools bamtobed -i SAMPLE.dedupped.bam | awk 'BEGIN {OFS="\t"} {$4="N"; $5="1000"; print $0}' | gzip -nc > SAMPLE.tagAlign.gz`
 
 ### 3-2. Run SPP.
-See https://github.com/kundajelab/phantompeakqualtools.\
+See https://github.com/kundajelab/phantompeakqualtools.
+
 `Rscript run_spp.R -c=SAMPLE.tagAlign.gz -filtchr=chrM -savp=SAMPLE.sppCC.pdf -out=SAMPLE.sppCC.txt`
 
 ### 3-3. Run MACS2.
