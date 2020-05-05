@@ -13,9 +13,11 @@
 
 [PICARD](https://github.com/broadinstitute/picard)
 
-### Genome & annotation
-[Gencode vM16](https://www.gencodegenes.org/mouse/release_M16.html)\
-Select "comprehensive gene annotation as gtf".
+[bedtools](https://bedtools.readthedocs.io/en/latest/index.html)
+
+[SPP](https://cran.r-project.org/web/packages/spp/index.html)
+
+[MACS2](https://github.com/taoliu/MACS)
 
 ## 1. Fastq
 
@@ -50,3 +52,19 @@ Filter unmapped or secondary or failed or duplicated or low-aligned (Phred score
 `samtools view -F 1804 -q 30 -b SAMPLE.bam chr1 chr2 chr3 chr4 chr5 chr6 chr7 chr8 chr9 chr10 chr11 chr12 chr13 chr14 chr15 chr16 chr17 chr18 chr19 chr20 chr21 chr22 chrX chrY chrM > SAMPLE.filtered.bam`
 
 ### 2-3. Removing duplicates
+`java -Xmx4G -jar picard-2.6.0.jar MarkDuplicates I=SAMPLE.filtered.bam O=SAMPLE.dedupped.bam M=SAMPLE.dedupped.summary ASSUME_SORT_ORDER=coordinate REMOVE_DUPLICATES=true CREATE_INDEX=true VALIDATION_STRINGENCY=SILENT`
+
+## 3. Peak calling
+
+(1) Generate tag file.
+`bedtools bamtobed -i SAMPLE.dedupped.bam | awk 'BEGIN {OFS="\t"} {$4="N"; $5="1000"; print $0}' | gzip -nc > SAMPLE.tagAlign.gz`
+
+(2) Run SPP.
+See https://github.com/kundajelab/phantompeakqualtools.
+
+`Rscript run_spp.R -c=SAMPLE.tagAlign.gz -filtchr=chrM -savp=SAMPLE.sppCC.pdf -out=SAMPLE.sppCC.txt`
+
+(3) Run MACS2.
+`macs2 callpeak -g hs -t SAMPLE.BAM -c INPUT.BAM -n SAMPLE --keep-dup all --nomodel --extsize N --bdg`
+-g hs: if human, put hs, if mouse, put mm.
+--extsize N: determined by SPP
