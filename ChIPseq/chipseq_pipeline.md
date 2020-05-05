@@ -56,7 +56,7 @@ Filter unmapped or secondary or failed or duplicated or low-aligned (Phred score
 
 ## 3. Peak calling
 
-(1) Generate tag file.
+#### (1) Generate tag file.
 `bedtools bamtobed -i SAMPLE.dedupped.bam | awk 'BEGIN {OFS="\t"} {$4="N"; $5="1000"; print $0}' | gzip -nc > SAMPLE.tagAlign.gz`
 
 (2) Run SPP.
