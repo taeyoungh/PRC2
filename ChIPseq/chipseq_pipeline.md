@@ -50,7 +50,7 @@ Filter unmapped or secondary or failed or duplicated or low-aligned (Phred score
 ### 3-1. Generate tag file.
 `bedtools bamtobed -i SAMPLE.dedupped.bam | awk 'BEGIN {OFS="\t"} {$4="N"; $5="1000"; print $0}' | gzip -nc > SAMPLE.tagAlign.gz`
 
-### 3-2. Run SPP.
+### 3-2. Run SPP (optional).
 See https://github.com/kundajelab/phantompeakqualtools.
 
 `Rscript run_spp.R -c=SAMPLE.tagAlign.gz -filtchr=chrM -savp=SAMPLE.sppCC.pdf -out=SAMPLE.sppCC.txt`
@@ -58,4 +58,4 @@ See https://github.com/kundajelab/phantompeakqualtools.
 ### 3-3. Run MACS2.
 `macs2 callpeak -g hs -t SAMPLE.BAM -c INPUT.BAM -n SAMPLE --keep-dup all --nomodel --extsize N --bdg`\
 -g hs: if human, put hs, if mouse, put mm.\
---extsize N: determined by SPP
+--extsize N: determined by SPP if you run SPP in the step 3-2. You don't have to put this option if you skip running SPP.
