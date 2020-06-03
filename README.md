@@ -4,10 +4,10 @@ These are the custom scripts/codes for the manuscript, "RNA is essential for PRC
 
 ### ChIP-seq
 #### (1) Pipeline
-See ChIPseq_pipeline.md.
+See chIPseq_pipeline.md.
 
 #### (2) Enrichment
-Enrichment of genes was determined by DESeq2 using read counts in gene bodies. See ChIPseq_EZH2.md for example.
+Enrichment of genes was determined by DESeq2 using read counts in gene bodies. See chIPseq_EZH2.md for example.
 
 ### rChIP-seq (RNase-dependent ChIP-seq)
 #### (1) Pipeline
@@ -18,4 +18,4 @@ Differential enrichment of genes between RNaseA treated and untreated was determ
 
 ### RNA-seq
 #### (1) Differentially expressed genes
-Differentially expressed genes were identified by DESeq2 using read counts in exons. See RNAseq_iPSC.md for example.
+Differentially expressed genes were identified by DESeq2 using read counts in exons. See rnaseq_iPSC.md for example.
