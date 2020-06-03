@@ -59,3 +59,6 @@ See https://github.com/kundajelab/phantompeakqualtools.
 `macs2 callpeak -g hs -t SAMPLE.BAM -c INPUT.BAM -n SAMPLE --keep-dup all --nomodel --extsize N --bdg`\
 -g hs: if human, put hs, if mouse, put mm.\
 --extsize N: determined by SPP
+
+## 4. Counting reads in gene bodies
+Use featureCounts with the option "-t gene"
