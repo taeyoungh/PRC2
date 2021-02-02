@@ -43,7 +43,7 @@ First, sort BAM by name.
 
 Second, remove duplicated reads. Note that this only handles uniquely-mapped reads.
 
-`samtools view -h SAMPLE.nameSorted.bam | python ~/Source/Pipeline/dedupped_single.py | samtools view -Sb - | samtools sort -@5 - > SAMPLE.uniq.dedupped.bam`
+`samtools view -h SAMPLE.nameSorted.bam | python dedupped_single.py | samtools view -Sb - | samtools sort -@5 - > SAMPLE.uniq.dedupped.bam`
 
 ## 3. Peak calling
 Follow standard ChIP-seq pipeline.
