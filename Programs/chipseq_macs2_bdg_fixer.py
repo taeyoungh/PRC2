@@ -4,7 +4,7 @@ import getopt
 
 '''
 1. Description
-Macs2 bedgraph has regions out of boundary due to extension of reads.
+Macs2 bedgraph can have regions out of boundary due to extension of reads.
 This program will fix them.
 
 2. Usage
@@ -18,7 +18,7 @@ opts,args = getopt.getopt(sys.argv[1:], "hi:g:o:", ["help", "input=", "genome_si
 
 for opt, val in opts:
 	if opt=="-h":
-		print("Usage: bedGraph_scaler.py -i bedgraph -g genome_size -o output"+"\n")
+		print("Usage: chipseq_macs2_bdg_fixer.py -i bedgraph -g genome_size -o output"+"\n")
 		continue
 	if opt in ("-i", "--input"):
 		bdgFileName = val
