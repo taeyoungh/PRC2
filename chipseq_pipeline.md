@@ -75,7 +75,7 @@ See https://github.com/kundajelab/phantompeakqualtools.
 `LC_COLLATE=C sort -k1,1 -k2,2n --parallel=5 YOUR_FILE.bdg.fixed > YOUR_FILE.bdg.fixed.sorted`
 
 #### (3) Generate bigwig and remove intermediate files.
-`bedGraphToBigWig YOUR_FILE.bdg.fixed GENOME_SIZE_FILE YOUR_FILE.bw` \
+`bedGraphToBigWig YOUR_FILE.bdg.fixed.sorted GENOME_SIZE_FILE YOUR_FILE.bw` \
 `rm YOUR_FILE.bdg.fixed YOUR_FILE.bdg.fixed.sorted`
 
 ## 4. Counting reads in gene bodies
